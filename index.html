@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Make Rehovot | מרחב היצירה של רחובות</title>
+  <meta name="description" content="Make Rehovot – מרחב יצירה קהילתי ברחובות: הדפסת תלת־ממד, חיתוך לייזר, אלקטרוניקה, נגרות וסדנאות לכל הגילאים. חלק מרשת חוויות רחובות.">
+  <link rel="icon" href="assets/logo-havayot.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #3b3b3d;
+      --ink-soft: #66666a;
+      --bg: #fffdf8;
+      --card: #ffffff;
+      --line: #ece7da;
+      --teal: #1ba7b8;
+      --yellow: #fbb913;
+      --orange: #ee5a24;
+      --green: #1e8f4e;
+      --radius: 18px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink: #f3f1ea;
+        --ink-soft: #b9b6ad;
+        --bg: #1d1d1f;
+        --card: #272729;
+        --line: #38383b;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Heebo", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1080px; margin-inline: auto; padding-inline: 16px; }
+    a { color: inherit; }
+
+    /* header */
+    header { border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 900; font-size: 1.25rem; }
+    .brand img { height: 54px; width: auto; }
+    .nav ul { display: flex; gap: 22px; list-style: none; padding: 0; font-weight: 500; }
+    .nav ul a { text-decoration: none; }
+    .nav ul a:hover { color: var(--orange); }
+    @media (max-width: 640px) { .nav ul { display: none; } }
+
+    /* buttons */
+    .btn {
+      display: inline-block; padding: 12px 26px; border-radius: 999px;
+      background: var(--orange); color: #fff; font-weight: 700; text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(238, 90, 36, .3); }
+    .btn.ghost { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+    .btn.ghost:hover { box-shadow: none; background: var(--yellow); border-color: var(--yellow); color: #3b3b3d; }
+
+    /* hero */
+    .hero { padding-block: 72px 56px; display: grid; gap: 40px; grid-template-columns: 1.2fr 1fr; align-items: center; }
+    .eyebrow { color: var(--teal); font-weight: 700; letter-spacing: .02em; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.1; font-weight: 900; margin-block: 10px 18px; }
+    h1 mark { background: linear-gradient(transparent 58%, var(--yellow) 58%); color: inherit; padding-inline: 4px; }
+    .hero p { font-size: 1.15rem; color: var(--ink-soft); max-width: 34em; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; aspect-ratio: 1; max-width: 380px; margin-inline: auto; }
+    .blocks span { border-radius: 14px; }
+    .blocks span:nth-child(1) { background: var(--teal); border-radius: 50%; }
+    .blocks span:nth-child(2) { background: var(--yellow); }
+    .blocks span:nth-child(3) { background: var(--ink); border-start-end-radius: 60px; }
+    .blocks span:nth-child(4) { background: var(--orange); }
+    .blocks span:nth-child(5) { background: var(--green); border-radius: 60px 14px 60px 14px; }
+    .blocks span:nth-child(6) { background: var(--teal); opacity: .55; }
+    .blocks span:nth-child(7) { background: var(--yellow); border-radius: 50%; }
+    .blocks span:nth-child(8) { background: var(--ink); opacity: .85; }
+    .blocks span:nth-child(9) { background: var(--orange); border-radius: 14px 60px 14px 60px; }
+    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; padding-block: 44px 32px; } .blocks { max-width: 260px; } }
+
+    /* sections */
+    section { padding-block: 56px; }
+    h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 900; margin-bottom: 8px; }
+    .lead { color: var(--ink-soft); margin-bottom: 30px; max-width: 38em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; border-top: 6px solid var(--c, var(--teal));
+    }
+    .card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+    .card h3 { font-size: 1.15rem; margin-bottom: 4px; }
+    .card p { color: var(--ink-soft); font-size: .98rem; }
+    .card:nth-child(4n+1) { --c: var(--teal); }
+    .card:nth-child(4n+2) { --c: var(--yellow); }
+    .card:nth-child(4n+3) { --c: var(--orange); }
+    .card:nth-child(4n+4) { --c: var(--green); }
+
+    .steps { counter-reset: s; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); list-style: none; padding: 0; }
+    .steps li { counter-increment: s; padding: 20px 20px 20px 0; }
+    .steps li::before {
+      content: counter(s); display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+      background: var(--ink); color: var(--bg); font-weight: 900; margin-bottom: 10px;
+    }
+    .steps h3 { font-size: 1.1rem; }
+    .steps p { color: var(--ink-soft); }
+
+    .band { background: var(--ink); color: #fff; border-radius: 28px; padding: 44px 28px; text-align: center; }
+    .band h2 { color: #fff; }
+    .band p { color: #d7d4cb; margin-bottom: 22px; }
+    .band .btn { background: var(--yellow); color: #3b3b3d; }
+
+    /* info */
+    .info { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .info div { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .info b { display: block; color: var(--teal); margin-bottom: 4px; }
+
+    footer { border-top: 1px solid var(--line); padding-block: 28px; margin-top: 24px; color: var(--ink-soft); font-size: .92rem; }
+    footer .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer img { height: 44px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="assets/logo-havayot.png" alt="רשת חוויות רחובות">
+      <span>Make Rehovot</span>
+    </a>
+    <ul>
+      <li><a href="#what">מה עושים</a></li>
+      <li><a href="#how">איך מצטרפים</a></li>
+      <li><a href="#visit">ביקור</a></li>
+    </ul>
+    <a class="btn" href="#join">להצטרפות</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">מרחב יצירה קהילתי · רשת חוויות רחובות</div>
+      <h1>הרעיון שלך <mark>הופך למציאות</mark></h1>
+      <p>מייקרספייס של רחובות: מדפסות תלת־ממד, חותך לייזר, אלקטרוניקה, נגרות ועוד. מקום לבנות, ללמוד וליצור יחד – לילדים, נוער, מבוגרים ויזמים.</p>
+      <div class="cta">
+        <a class="btn" href="#join">בואו להתנסות</a>
+        <a class="btn ghost" href="#what">מה יש אצלנו</a>
+      </div>
+    </div>
+    <div class="blocks" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <section id="what">
+    <div class="wrap">
+      <h2>מה עושים במרחב</h2>
+      <p class="lead">ציוד מקצועי, הדרכה אנושית וקהילה שעוזרת. אין צורך בניסיון קודם.</p>
+      <div class="grid">
+        <article class="card"><span class="icon">🧊</span><h3>הדפסת תלת־ממד</h3><p>מתכננים דגם במחשב ומדפיסים אותו – אב־טיפוס, חלקי חילוף או מתנה.</p></article>
+        <article class="card"><span class="icon">🔦</span><h3>חיתוך וחריטת לייזר</h3><p>עץ, אקריליק וקרטון בדיוק מילימטרי: שלטים, משחקים ודגמים.</p></article>
+        <article class="card"><span class="icon">🔌</span><h3>אלקטרוניקה ורובוטיקה</h3><p>Arduino, חיישנים ולחמים. מפרויקט ראשון עד רובוט שלם.</p></article>
+        <article class="card"><span class="icon">🪚</span><h3>נגרות ויצירה</h3><p>פינת עבודה עם כלי יד וחשמל, בליווי מדריך.</p></article>
+        <article class="card"><span class="icon">🎓</span><h3>סדנאות וחוגים</h3><p>מסלולים לילדים ולנוער, סדנאות למבוגרים ופעילות למשפחות.</p></article>
+        <article class="card"><span class="icon">🤝</span><h3>קהילת יוצרים</h3><p>מפגשים, פרויקטים משותפים והחלפת ידע בין שכנים ברחובות.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>איך מתחילים</h2>
+      <p class="lead">שלושה צעדים והידיים כבר עובדות.</p>
+      <ol class="steps">
+        <li><h3>משאירים פרטים</h3><p>ממלאים טופס קצר ונחזור אליכם עם מועד קרוב.</p></li>
+        <li><h3>מגיעים להיכרות</h3><p>סיור במרחב, הדרכת בטיחות ופרויקט ראשון קטן.</p></li>
+        <li><h3>יוצרים בקביעות</h3><p>נכנסים לשעות פתוחות, רוכשים מינוי או נרשמים לסדנה.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="wrap">
+      <div class="band">
+        <h2>מוכנים ליצור?</h2>
+        <p>השאירו פרטים ונתאם ביקור היכרות ראשון, בלי התחייבות.</p>
+        <a class="btn" href="mailto:info@makerehovot.example?subject=ביקור היכרות במרחב היצירה">שלחו לנו הודעה</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <h2>ביקור במרחב</h2>
+      <p class="lead">הפרטים הסופיים יעודכנו בקרוב.</p>
+      <div class="info">
+        <div><b>כתובת</b>רחובות (כתובת מדויקת תתווסף)</div>
+        <div><b>שעות פתיחה</b>ימים וזמנים יעודכנו</div>
+        <div><b>יצירת קשר</b>info@makerehovot.example</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-havayot.png" alt="רשת חוויות רחובות">
+    <span>© 2026 Make Rehovot · חלק מרשת חוויות רחובות</span>
+  </div>
+</footer>
+
+</body>
+</html>
